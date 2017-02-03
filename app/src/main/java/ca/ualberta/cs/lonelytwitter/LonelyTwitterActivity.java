@@ -56,16 +56,27 @@ import com.google.gson.reflect.TypeToken;
 public class LonelyTwitterActivity extends Activity {
 	/**
 	 * The file that all the tweets are saved in. The format of the file is JSON.
-	 * @see #loadFromFile()
-	 * @see #saveInFile()
+	 * @see #loadFromFile
+	 * @see #saveInFile
 	 */
 	private static final String FILENAME = "file.sav";
+
+	/** Used to sort a tweetList.
+	 * @see #sortTweetListItems
+	 */
 	private enum TweetListOrdering {DATE_ASCENDING, DATE_DESCENDING,
 		TEXT_ASCENDING, TEXT_DESCENDING};
+
+	/** Text that becomes the text message of the Tweet. */
 	private EditText bodyText;
+
+	/** The list of older Tweets that is stored on the Android device. */
 	private ListView oldTweetsList;
 
+	/**An ArrayList of Tweet objects. Used to store, read, etc., many Tweets at a time. */
 	private ArrayList<Tweet> tweetList;
+
+	/**Adapter that backs tweetList. Used in notification of observers. */
 	private ArrayAdapter<Tweet> adapter;
 
 	/** Called when the activity is first created. */
@@ -107,6 +118,12 @@ public class LonelyTwitterActivity extends Activity {
 		});
 	}
 
+	/**
+	 * Called after onCreate() or onRestart(). That is, after the activity
+	 * comes into view for the first time, or again after being stopped.
+	 * <br><br>The basic function of onStart() here is to load the tweetList form the file stored
+	 * on the Android device.
+	 */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -131,7 +148,7 @@ public class LonelyTwitterActivity extends Activity {
 
 	/**
 	 * This method sorts items in the tweet list and refreshes the adapter.
-	 * @param ordering ordering to be used
+	 * @param ordering Ordering to be used
      */
 	private void sortTweetListItems(TweetListOrdering ordering) {
 
