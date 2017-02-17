@@ -3,6 +3,9 @@ package ca.ualberta.cs.lonelytwitter;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * Created by nyitrai on 2/16/17.
  */
@@ -57,6 +60,27 @@ public class TweetListTest extends ActivityInstrumentationTestCase2{
         NormalTweet returnedTweet = tweets.getTweet(0);
         assertEquals(returnedTweet.getMessage(), tweet.getMessage());
         assertEquals(returnedTweet.getDate(), tweet.getDate());
+    }
+
+    public void testGetTweets() {
+        TweetList tweets = new TweetList();
+        NormalTweet tweet1 = new NormalTweet("some tweet");
+        NormalTweet tweet2 = new NormalTweet("some other tweet");
+        NormalTweet tweet3 = new NormalTweet("some other other tweet");
+
+        // Create the tweets with dates for testing.
+        tweet1.setDate(new Date(2011, 1, 1));
+        tweet2.setDate(new Date(2001, 1, 1));
+        tweet3.setDate(new Date(2010, 1, 1));
+        tweets.add(tweet1);
+        tweets.add(tweet2);
+        tweets.add(tweet3);
+
+        TweetList sortedTweets = tweets.getTweets();
+
+        //TODO: Actually test if the list is sorted.
+
+
     }
 
     public void testDeleteTweet() {

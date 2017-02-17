@@ -3,6 +3,8 @@ package ca.ualberta.cs.lonelytwitter;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by nyitrai on 2/16/17.
@@ -27,6 +29,16 @@ public class TweetList {
     public NormalTweet getTweet(int index) {
         // return new NormalTweet("not the tweet");
         return tweets.get(index);
+    }
+
+    public TweetList getTweets() {
+
+        Collections.sort(tweets, new Comparator<NormalTweet>() {
+           public int compare(NormalTweet tweet1, NormalTweet tweet2) {
+               return tweet1.getDate().compareTo(tweet2.getDate());
+           }
+        });
+        return this;
     }
 
     public void delete(NormalTweet tweet) {
