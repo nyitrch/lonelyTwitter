@@ -53,8 +53,11 @@ public class TweetList {
         for (NormalTweet tweet : sortedTweets) {
             sortedTweetList.add(tweet);
         }
-
         return sortedTweetList;
+    }
+
+    public int getCount() {
+        return tweets.size();
     }
 
     public void delete(NormalTweet tweet) {

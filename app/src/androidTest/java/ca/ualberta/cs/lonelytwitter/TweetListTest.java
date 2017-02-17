@@ -84,6 +84,32 @@ public class TweetListTest extends ActivityInstrumentationTestCase2{
         assertTrue(tweets.getTweet(2).getDate().compareTo(sortedTweets.getTweet(2).getDate()) < 0);
     }
 
+    public void testGetCount() {
+        TweetList tweets = new TweetList();
+
+        assertTrue(tweets.getCount() == 0);
+
+        NormalTweet tweet1 = new NormalTweet("some tweet");
+        NormalTweet tweet2 = new NormalTweet("some other tweet");
+        NormalTweet tweet3 = new NormalTweet("some other other tweet");
+
+        tweets.add(tweet1);
+        assertTrue(tweets.getCount() == 1);
+
+        tweets.add(tweet2);
+        assertTrue(tweets.getCount() == 2);
+
+        tweets.add(tweet3);
+        assertTrue(tweets.getCount() == 3);
+
+        tweets.delete(tweet1);
+        tweets.delete(tweet2);
+        tweets.delete(tweet3);
+
+        assertTrue(tweets.getCount() == 0);
+
+    }
+
     public void testDeleteTweet() {
         TweetList tweets = new TweetList();
         NormalTweet tweet = new NormalTweet("some tweet");
