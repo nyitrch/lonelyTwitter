@@ -1,6 +1,7 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,18 +28,33 @@ public class TweetList {
     }
 
     public NormalTweet getTweet(int index) {
-        // return new NormalTweet("not the tweet");
         return tweets.get(index);
     }
 
     public TweetList getTweets() {
 
-        Collections.sort(tweets, new Comparator<NormalTweet>() {
+        ArrayList<NormalTweet> sortedTweets = new ArrayList<NormalTweet>();
+        TweetList sortedTweetList = new TweetList();
+
+        // Making a copy of the ArrayList.
+        for (NormalTweet tweet : tweets) {
+            NormalTweet newTweet = new NormalTweet(tweet.getDate(), tweet.getMessage());
+            sortedTweets.add(newTweet);
+        }
+
+        // Sorting this new copied list.
+        Collections.sort(sortedTweets, new Comparator<NormalTweet>() {
            public int compare(NormalTweet tweet1, NormalTweet tweet2) {
                return tweet1.getDate().compareTo(tweet2.getDate());
            }
         });
-        return this;
+
+        // Build sorted TweetList.
+        for (NormalTweet tweet : sortedTweets) {
+            sortedTweetList.add(tweet);
+        }
+
+        return sortedTweetList;
     }
 
     public void delete(NormalTweet tweet) {

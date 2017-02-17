@@ -69,18 +69,19 @@ public class TweetListTest extends ActivityInstrumentationTestCase2{
         NormalTweet tweet3 = new NormalTweet("some other other tweet");
 
         // Create the tweets with dates for testing.
-        tweet1.setDate(new Date(2011, 1, 1));
-        tweet2.setDate(new Date(2001, 1, 1));
-        tweet3.setDate(new Date(2010, 1, 1));
+        tweet1.setDate(new Date(2000, 1, 3));
+        tweet2.setDate(new Date(2000, 1, 2));
+        tweet3.setDate(new Date(2000, 1, 1));
         tweets.add(tweet1);
         tweets.add(tweet2);
         tweets.add(tweet3);
 
         TweetList sortedTweets = tweets.getTweets();
 
-        //TODO: Actually test if the list is sorted.
-
-
+        // Actually test if the list is sorted.
+        assertTrue(tweets.getTweet(0).getDate().compareTo(sortedTweets.getTweet(0).getDate()) > 0);
+        assertTrue(tweets.getTweet(1).getDate().compareTo(sortedTweets.getTweet(1).getDate()) == 0);
+        assertTrue(tweets.getTweet(2).getDate().compareTo(sortedTweets.getTweet(2).getDate()) < 0);
     }
 
     public void testDeleteTweet() {
